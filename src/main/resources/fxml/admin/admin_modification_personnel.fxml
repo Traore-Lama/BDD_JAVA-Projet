@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.admin.ModificationPersonnelController" prefWidth="1300" prefHeight="800">
+  <top><HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+    <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+    <Region HBox.hgrow="ALWAYS"/>
+    <Label text="Espace administrateur" styleClass="user-label"/>
+    <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+  </HBox></top>
+  <left><VBox prefWidth="230" styleClass="sidebar" spacing="7"><Button text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirDashboard"/>
+<Button text="Personnel administratif" maxWidth="Infinity" styleClass="nav-button, nav-active" onAction="#ouvrirPersonnel"/>
+<Button text="Gestion des salles" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirSalles"/></VBox></left>
+  <center><ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+    <content><VBox spacing="18" fillWidth="true" styleClass="content">
+      <Label text="MODIFIER UN COMPTE ADMINISTRATIF" styleClass="title"/>
+      <Label text="Seule l’adresse e-mail du compte sélectionné peut être modifiée." wrapText="true" styleClass="stat-label"/>
+      
+<VBox spacing="14" maxWidth="720" styleClass="card">
+ <Label text="Compte sélectionné" styleClass="section-label"/>
+ <Label text="Nom et prénom" styleClass="field-label"/>
+ <TextField fx:id="identitePersonnel" promptText="Renseignés depuis la base" editable="false" styleClass="search"/>
+ <Label text="Nouvelle adresse e-mail *" styleClass="field-label"/>
+ <TextField fx:id="nouvelEmail" promptText="Adresse e-mail professionnelle" styleClass="search"/>
+ <Label text="Le nom, le prénom et le statut ne sont pas modifiables sur cet écran." wrapText="true" styleClass="stat-label"/>
+ <HBox spacing="12" alignment="CENTER_RIGHT">
+  <Button text="Annuler" styleClass="secondary" onAction="#ouvrirPersonnel"/>
+  <Button text="Enregistrer la modification" styleClass="btn-primary" disable="true"/>
+ </HBox>
+</VBox>
+    </VBox></content>
+  </ScrollPane></center>
+</BorderPane>

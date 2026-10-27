@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Maquette sans données fictives. Style CSS appliqué par SceneManager. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.personnel.MedecinsController"
+            prefWidth="1300" prefHeight="800">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+      <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Espace personnel administratif" styleClass="user-label"/>
+      <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+    </HBox>
+  </top>
+  <left>
+    <VBox prefWidth="230" styleClass="sidebar" spacing="7">
+<Button text="Tableau de bord" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDashboard"/>
+<Button text="Patients" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPatients"/>
+<Button text="Médecins" styleClass="nav-button, nav-active" maxWidth="Infinity" onAction="#ouvrirMedecins"/>
+<Button text="Salles" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirSalles"/>
+<Button text="Demandes" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDemandes"/>
+<Button text="Planning" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPlanning"/>
+    </VBox>
+  </left>
+  <center>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+      <content>
+        <VBox spacing="18" styleClass="content" fillWidth="true">
+          <Label text="MÉDECINS" styleClass="title" />
+          <Label text="Les habilitations et les indisponibilités sont gérées par les médecins sur Symfony." styleClass="stat-label" wrapText="true"/>
+          <HBox spacing="10" alignment="CENTER_LEFT"><TextField fx:id="rechercheMedecin" promptText="Rechercher par nom" maxWidth="Infinity" styleClass="home-text-field"/><Button text="Rechercher" styleClass="secondary" disable="true"/><Button text="Créer un médecin" styleClass="btn-primary" onAction="#ouvrirCreationMedecin"/></HBox><VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Liste des médecins" styleClass="section-label" /><TableView fx:id="tableMedecins" prefHeight="365" maxWidth="Infinity"><columns><TableColumn text="Nom" prefWidth="200"/><TableColumn text="Prénom" prefWidth="200"/><TableColumn text="E-mail" prefWidth="280"/><TableColumn text="Téléphone" prefWidth="180"/><TableColumn text="Statut" prefWidth="150"/></columns><placeholder><Label text="Aucune donnée à afficher pour le moment."/></placeholder></TableView><HBox spacing="10"><Button text="Ouvrir la fiche (maquette)" styleClass="secondary" onAction="#ouvrirFicheMedecin"/></HBox></VBox>
+        </VBox>
+      </content>
+    </ScrollPane>
+  </center>
+</BorderPane>

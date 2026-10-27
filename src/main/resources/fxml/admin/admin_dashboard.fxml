@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- NeuroLink Clinic - Tableau de bord administrateur.
+     Maquette V1 : les donnees, les graphiques et les actions seront
+     relies aux services par le groupe. Aucun chiffre fictif. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.admin.AdminDashboardController"
+            prefWidth="1300" prefHeight="800">
+
+    <!-- Barre superieure fixe -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+            <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Espace administrateur" styleClass="user-label"/>
+            <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+        </HBox>
+    </top>
+
+    <!-- Trois rubriques, sans pages Statistiques / Synchronisation -->
+    <left>
+        <VBox prefWidth="230" styleClass="sidebar">
+            <Button text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button, nav-active" onAction="#ouvrirDashboard"/>
+            <Button text="Personnel administratif" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirPersonnel"/>
+            <Button text="Gestion des salles" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirSalles"/>
+        </VBox>
+    </left>
+
+    <!-- Contenu defilant ; barre et menu restent visibles -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <content>
+                <VBox spacing="18" styleClass="content" fillWidth="true">
+                    <Label text="TABLEAU DE BORD" styleClass="title"/>
+                    <Label text="Vue d'ensemble de l'activité de la clinique" styleClass="stat-label"/>
+
+                    <!-- 4 indicateurs -->
+                    <HBox spacing="14" alignment="CENTER_LEFT">
+                        <VBox spacing="7" HBox.hgrow="ALWAYS" maxWidth="Infinity" styleClass="card">
+                            <Label text="Personnel administratif" styleClass="metric-label" wrapText="true"/>
+                            <Label fx:id="lblNbPersonnel" text="—" styleClass="metric"/>
+                        </VBox>
+                        <VBox spacing="7" HBox.hgrow="ALWAYS" maxWidth="Infinity" styleClass="card">
+                            <Label text="Salles disponibles" styleClass="metric-label" wrapText="true"/>
+                            <Label fx:id="lblNbSallesDisponibles" text="—" styleClass="metric"/>
+                        </VBox>
+                        <VBox spacing="7" HBox.hgrow="ALWAYS" maxWidth="Infinity" styleClass="card">
+                            <Label text="Demandes en attente" styleClass="metric-label" wrapText="true"/>
+                            <Label fx:id="lblNbDemandesEnAttente" text="—" styleClass="metric"/>
+                        </VBox>
+                        <VBox spacing="7" HBox.hgrow="ALWAYS" maxWidth="Infinity" styleClass="card">
+                            <Label text="Interventions programmées" styleClass="metric-label" wrapText="true"/>
+                            <Label fx:id="lblNbInterventionsProgrammees" text="—" styleClass="metric"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Synchronisation sur le dashboard -->
+                    <VBox spacing="11" styleClass="card" maxWidth="Infinity">
+                        <Label text="Synchronisation avec la maison mère" styleClass="section-label"/>
+                        <Label text="Actualiser les familles d'implants, les implants et leurs incompatibilités." wrapText="true" styleClass="stat-label"/>
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <Label text="Dernière synchronisation :" styleClass="field-label"/>
+                            <Label fx:id="lblDerniereSynchronisation" text="Non renseignée" styleClass="stat-label"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnSynchroniser" text="Synchroniser le catalogue" styleClass="btn-primary"/>
+                        </HBox>
+                        <ProgressBar fx:id="progressSynchronisation" progress="0" maxWidth="Infinity"
+                                     visible="false" managed="false"/>
+                        <Label fx:id="lblEtatSynchronisation" text="Aucune synchronisation en cours."
+                               styleClass="stat-label" wrapText="true"/>
+                    </VBox>
+
+                    <!-- Quatre graphiques prevus dans le cahier des charges -->
+                    <Label text="STATISTIQUES DE LA CLINIQUE" styleClass="title"/>
+                    <Label text="Les graphiques seront alimentés par les données de la base."
+                           styleClass="stat-label" wrapText="true"/>
+
+                    <HBox spacing="16" alignment="TOP_LEFT">
+                        <VBox spacing="8" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                            <Label text="Demandes par statut" styleClass="section-label"/>
+                            <PieChart fx:id="chartDemandesStatut" prefHeight="275" animated="false"/>
+                        </VBox>
+                        <VBox spacing="8" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                            <Label text="Interventions par médecin" styleClass="section-label"/>
+                            <BarChart fx:id="chartInterventionsMedecin" prefHeight="275"
+                                      animated="false" legendVisible="false">
+                                <xAxis><CategoryAxis label="Médecin"/></xAxis>
+                                <yAxis><NumberAxis label="Interventions"/></yAxis>
+                            </BarChart>
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="16" alignment="TOP_LEFT">
+                        <VBox spacing="8" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                            <Label text="Évolution des interventions" styleClass="section-label"/>
+                            <LineChart fx:id="chartEvolutionInterventions" prefHeight="275"
+                                       animated="false" legendVisible="false">
+                                <xAxis><CategoryAxis label="Mois"/></xAxis>
+                                <yAxis><NumberAxis label="Interventions"/></yAxis>
+                            </LineChart>
+                        </VBox>
+                        <VBox spacing="8" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                            <Label text="Évolution des demandes" styleClass="section-label"/>
+                            <AreaChart fx:id="chartEvolutionDemandes" prefHeight="275"
+                                       animated="false" legendVisible="false">
+                                <xAxis><CategoryAxis label="Mois"/></xAxis>
+                                <yAxis><NumberAxis label="Demandes"/></yAxis>
+                            </AreaChart>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Deux TableView distincts, avec 5 lignes maximum en V1 -->
+                    <Label text="ACTIVITÉ RÉCENTE" styleClass="title"/>
+                    <VBox spacing="10" styleClass="card" maxWidth="Infinity">
+                        <Label text="5 dernières interventions" styleClass="section-label"/>
+                        <TableView fx:id="tableInterventions" prefHeight="230" maxWidth="Infinity">
+                            <columns>
+                                <TableColumn fx:id="colInterventionDate" text="Date" prefWidth="140"/>
+                                <TableColumn fx:id="colInterventionHeure" text="Heure" prefWidth="100"/>
+                                <TableColumn fx:id="colInterventionPatient" text="Patient" prefWidth="200"/>
+                                <TableColumn fx:id="colInterventionMedecin" text="Médecin" prefWidth="200"/>
+                                <TableColumn fx:id="colInterventionSalle" text="Salle" prefWidth="150"/>
+                            </columns>
+                            <placeholder><Label text="Aucune intervention à afficher pour le moment."/></placeholder>
+                        </TableView>
+                    </VBox>
+
+                    <VBox spacing="10" styleClass="card" maxWidth="Infinity">
+                        <Label text="5 dernières demandes" styleClass="section-label"/>
+                        <TableView fx:id="tableDemandes" prefHeight="230" maxWidth="Infinity">
+                            <columns>
+                                <TableColumn fx:id="colDemandeDate" text="Date de demande" prefWidth="180"/>
+                                <TableColumn fx:id="colDemandePatient" text="Patient" prefWidth="200"/>
+                                <TableColumn fx:id="colDemandeImplant" text="Implant demandé" prefWidth="220"/>
+                                <TableColumn fx:id="colDemandeStatut" text="Statut" prefWidth="150"/>
+                            </columns>
+                            <placeholder><Label text="Aucune demande à afficher pour le moment."/></placeholder>
+                        </TableView>
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

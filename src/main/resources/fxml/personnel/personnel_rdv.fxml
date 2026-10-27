@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Maquette sans données fictives. Style CSS appliqué par SceneManager. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.personnel.DemandesController"
+            prefWidth="1300" prefHeight="800">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+      <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Espace personnel administratif" styleClass="user-label"/>
+      <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+    </HBox>
+  </top>
+  <left>
+    <VBox prefWidth="230" styleClass="sidebar" spacing="7">
+<Button text="Tableau de bord" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDashboard"/>
+<Button text="Patients" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPatients"/>
+<Button text="Médecins" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirMedecins"/>
+<Button text="Salles" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirSalles"/>
+<Button text="Demandes" styleClass="nav-button, nav-active" maxWidth="Infinity" onAction="#ouvrirDemandes"/>
+<Button text="Planning" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPlanning"/>
+    </VBox>
+  </left>
+  <center>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+      <content>
+        <VBox spacing="18" styleClass="content" fillWidth="true">
+          <Label text="DEMANDES DE RENDEZ-VOUS" styleClass="title" />
+          <Label text="Consulter les demandes ; la sélection d’un créneau et les décisions se font dans la fiche détaillée." styleClass="stat-label" wrapText="true"/>
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Demandes reçues" styleClass="section-label" /><TableView fx:id="tableDemandes" prefHeight="365" maxWidth="Infinity"><columns><TableColumn text="Date de demande" prefWidth="175"/><TableColumn text="Patient" prefWidth="200"/><TableColumn text="Implant demandé" prefWidth="245"/><TableColumn text="Statut" prefWidth="185"/></columns><placeholder><Label text="Aucune donnée à afficher pour le moment."/></placeholder></TableView><HBox spacing="10"><Button text="Ouvrir le détail (maquette)" styleClass="secondary" onAction="#ouvrirDetailDemande"/></HBox></VBox>
+        </VBox>
+      </content>
+    </ScrollPane>
+  </center>
+</BorderPane>

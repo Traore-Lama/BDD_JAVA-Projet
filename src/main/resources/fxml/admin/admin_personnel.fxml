@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.admin.PersonnelController"
+            prefWidth="1300" prefHeight="800">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+            <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Espace administrateur" styleClass="user-label"/>
+            <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefWidth="230" styleClass="sidebar">
+            <Button text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirDashboard"/>
+            <Button text="Personnel administratif" maxWidth="Infinity" styleClass="nav-button, nav-active" onAction="#ouvrirPersonnel"/>
+            <Button text="Gestion des salles" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirSalles"/>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <content>
+                <VBox spacing="18" styleClass="content">
+                    <Label text="PERSONNEL ADMINISTRATIF" styleClass="title"/>
+                    <Label text="Gérer les comptes et les accès du personnel administratif" styleClass="subtitle"/>
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <TextField fx:id="rechercheNom" promptText="Rechercher par nom de famille" prefWidth="340" styleClass="search"/>
+                        <Button text="Rechercher" styleClass="secondary"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Créer un compte" styleClass="btn-primary" onAction="#ouvrirCreationPersonnel"/>
+                    </HBox>
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Comptes du personnel" styleClass="section-label"/>
+                        <TableView fx:id="tablePersonnel" prefHeight="410" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn text="Nom" prefWidth="170"/>
+                                <TableColumn text="Prénom" prefWidth="170"/>
+                                <TableColumn text="Adresse e-mail" prefWidth="310"/>
+                                <TableColumn text="Statut" prefWidth="120"/>
+                            </columns>
+                            <placeholder>
+                                <Label text="Aucun compte à afficher pour le moment"/>
+                            </placeholder>
+                        </TableView>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Button text="Modifier l'e-mail" styleClass="secondary" onAction="#ouvrirModificationPersonnel"/>
+                            <Button text="Bloquer le compte" styleClass="danger" disable="true"/>
+                            <Button text="Réactiver le compte" styleClass="secondary" disable="true"/>
+                        </HBox>
+                    </VBox>
+                    <Label text="Sélectionner un compte dans le tableau avant toute modification." styleClass="stat-label"/>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

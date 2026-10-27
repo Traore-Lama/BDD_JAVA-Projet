@@ -1,0 +1,364 @@
+/* =====================================================================
+   NEUROLINK CLINIC — THEME COMMUN BLEU & BLANC
+   Une seule feuille de style partagee par tous les ecrans du dossier fxml.
+   ===================================================================== */
+
+.root, .root-pane {
+    -fx-font-family: "Segoe UI", Arial;
+    -fx-background-color: #ffffff;
+}
+
+/* ---------- BARRE DU HAUT ---------- */
+.top-bar, .topbar {
+    -fx-background-color: linear-gradient(to right, #1d4ed8, #3b82f6);
+    -fx-effect: dropshadow(gaussian, rgba(29,78,216,0.35), 10, 0, 0, 2);
+    -fx-padding: 14 18 14 18;
+}
+
+.app-title, .brand {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.top-bar Label, .topbar Label, .user-label {
+    -fx-text-fill: white;
+}
+
+.user-label {
+    -fx-font-size: 12px;
+}
+
+/* ---------- BARRE LATERALE ---------- */
+.sidebar {
+    -fx-background-color: #ffffff;
+    -fx-padding: 14 10 14 10;
+    -fx-spacing: 7;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 2, 0);
+}
+
+.sidebar-btn, .nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1e3a8a;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 13px;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-scale-x: 1.0;
+    -fx-scale-y: 1.0;
+}
+
+.sidebar-btn:hover, .nav-button:hover {
+    -fx-background-color: #eff6ff;
+    -fx-text-fill: #1d4ed8;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.35), 8, 0, 0, 1);
+}
+
+.sidebar-btn:pressed, .nav-button:pressed {
+    -fx-background-color: #dbeafe;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.sidebar-btn.active, .nav-active {
+    -fx-background-color: linear-gradient(to right, #2563eb, #3b82f6);
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.45), 10, 0, 0, 2);
+}
+
+.sidebar-btn.active:hover, .nav-active:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+/* ---------- CONTENU ---------- */
+.content-area, .content {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 24;
+    -fx-spacing: 16;
+}
+
+.section-title, .title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e3a8a;
+}
+
+.section-subtitle, .subtitle, .section-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1d4ed8;
+}
+
+/* ---------- CARTES / STATISTIQUES ---------- */
+.stat-card, .card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #dbeafe;
+    -fx-border-width: 0 0 0 4;
+    -fx-border-radius: 10;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.15), 8, 0, 0, 2);
+    -fx-scale-x: 1.0;
+    -fx-scale-y: 1.0;
+}
+
+.stat-card:hover, .card:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.30), 14, 0, 0, 4);
+    -fx-border-color: #3b82f6;
+}
+
+.stat-label, .metric-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 12px;
+}
+
+.stat-value, .metric {
+    -fx-text-fill: #1d4ed8;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.info-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.12), 8, 0, 0, 2);
+}
+
+.value-pending, .badge-warn {
+    -fx-text-fill: #f59e0b;
+    -fx-font-weight: bold;
+}
+
+.value-confirmed, .badge-ok {
+    -fx-text-fill: #16a34a;
+    -fx-font-weight: bold;
+}
+
+.value-rejected, .danger {
+    -fx-text-fill: #dc2626;
+    -fx-font-weight: bold;
+}
+
+/* ---------- BOUTONS ---------- */
+.btn-primary, .primary {
+    -fx-background-color: linear-gradient(to right, #2563eb, #3b82f6);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.4), 8, 0, 0, 2);
+    -fx-scale-x: 1.0;
+    -fx-scale-y: 1.0;
+}
+
+.btn-primary:hover, .primary:hover {
+    -fx-scale-x: 1.06;
+    -fx-scale-y: 1.06;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.6), 14, 0, 0, 4);
+}
+
+.btn-primary:pressed, .primary:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.secondary {
+    -fx-background-color: #eff6ff;
+    -fx-text-fill: #1d4ed8;
+    -fx-background-radius: 8;
+    -fx-padding: 9 14 9 14;
+    -fx-cursor: hand;
+}
+
+.secondary:hover {
+    -fx-background-color: #dbeafe;
+}
+
+.search {
+    -fx-background-color: white;
+    -fx-border-color: #dbeafe;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 11 8 11;
+}
+
+/* ---------- TABLEAUX ---------- */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #e2e8f0;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.10), 6, 0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #eff6ff;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: #1d4ed8;
+    -fx-font-weight: bold;
+}
+
+/* ===================== PAGES D'AUTHENTIFICATION =====================
+   Page d'accueil / connexion ET page de creation de compte partagent
+   ces memes classes "home-*" pour rester visuellement identiques.
+   ====================================================================== */
+
+.home-root {
+    -fx-background-color: #ffffff;
+}
+
+/* Cote gauche : zone du formulaire */
+.home-form-side {
+    -fx-background-color: #ffffff;
+    -fx-padding: 40;
+    -fx-spacing: 0;
+}
+
+/* Voile degrade sombre en bas de la photo, pour la legende */
+.home-photo-overlay {
+    -fx-background-color: linear-gradient(to bottom,
+    rgba(11,30,77,0.0) 45%,
+    rgba(11,30,77,0.75) 100%);
+}
+
+.home-photo-caption-title {
+    -fx-fill: white;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.home-photo-caption-sub {
+    -fx-fill: #dbeafe;
+    -fx-font-size: 11px;
+}
+
+.home-brand-title {
+    -fx-fill: #1e3a8a;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.home-brand-subtitle {
+    -fx-fill: #64748b;
+    -fx-font-size: 12px;
+}
+
+.home-field-label {
+    -fx-fill: #1e3a8a;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.home-text-field {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8;
+    -fx-border-color: #dbeafe;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 9 12 9 12;
+    -fx-font-size: 13px;
+    -fx-pref-width: 444;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.home-text-field:focused {
+    -fx-border-color: #3b82f6;
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.35), 8, 0, 0, 1);
+}
+
+.home-login-btn {
+    -fx-pref-width: 444;
+    -fx-font-size: 13px;
+}
+
+.home-footer-text {
+    -fx-fill: #94a3b8;
+    -fx-font-size: 10px;
+}
+
+.home-link-text {
+    -fx-fill: #1d4ed8;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.home-error-text {
+    -fx-fill: #dc2626;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* Champ deroulant (Role) sur le formulaire de creation de compte */
+.home-combo {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8;
+    -fx-border-color: #dbeafe;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+    -fx-pref-width: 444;
+}
+
+.home-combo:focused {
+    -fx-border-color: #3b82f6;
+}
+
+/* ---------- BOUTON DANGER (Desactiver, Refuser...) ---------- */
+.button.danger {
+    -fx-background-color: #fef2f2;
+    -fx-background-radius: 8;
+    -fx-padding: 9 14 9 14;
+    -fx-cursor: hand;
+}
+
+.button.danger:hover {
+    -fx-background-color: #fee2e2;
+}
+
+/* ---------- FORMULAIRES ---------- */
+.field-label {
+    -fx-text-fill: #1e3a8a;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* ---------- LISTES DEROULANTES / DATES (meme style que les champs) ---------- */
+.content .combo-box, .content .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #dbeafe;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+/* NeuroLink Clinic — complément pour les maquettes de disponibilité */
+.status-valid {
+    -fx-text-fill: #15803d;
+    -fx-background-color: #dcfce7;
+    -fx-background-radius: 7;
+    -fx-padding: 5 9;
+    -fx-font-weight: bold;
+}
+.status-invalid {
+    -fx-text-fill: #b91c1c;
+    -fx-background-color: #fee2e2;
+    -fx-background-radius: 7;
+    -fx-padding: 5 9;
+    -fx-font-weight: bold;
+}
+/* À réutiliser plus tard dans la cellFactory du TableView :
+   appliquer status-valid ou status-invalid suivant le statut calculé par le service. */
+
+

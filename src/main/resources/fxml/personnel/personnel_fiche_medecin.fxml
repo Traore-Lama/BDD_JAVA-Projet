@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Maquette sans données fictives. Style CSS appliqué par SceneManager. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.personnel.FicheMedecinController"
+            prefWidth="1300" prefHeight="800">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+      <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Espace personnel administratif" styleClass="user-label"/>
+      <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+    </HBox>
+  </top>
+  <left>
+    <VBox prefWidth="230" styleClass="sidebar" spacing="7">
+<Button text="Tableau de bord" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDashboard"/>
+<Button text="Patients" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPatients"/>
+<Button text="Médecins" styleClass="nav-button, nav-active" maxWidth="Infinity" onAction="#ouvrirMedecins"/>
+<Button text="Salles" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirSalles"/>
+<Button text="Demandes" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDemandes"/>
+<Button text="Planning" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPlanning"/>
+    </VBox>
+  </left>
+  <center>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+      <content>
+        <VBox spacing="18" styleClass="content" fillWidth="true">
+          <Label text="FICHE MÉDECIN" styleClass="title" />
+          <Label text="Informations du médecin, habilitations et indisponibilités consultables en lecture seule." styleClass="stat-label" wrapText="true"/>
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Coordonnées" styleClass="section-label" /><HBox spacing="12" alignment="CENTER_LEFT"><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Nom et prénom" styleClass="field-label" /><TextField fx:id="identite" promptText="Depuis la BDD" maxWidth="Infinity" styleClass="home-text-field" editable="false"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="E-mail" styleClass="field-label" /><TextField fx:id="email" promptText="Depuis la BDD" maxWidth="Infinity" styleClass="home-text-field" editable="false"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Téléphone" styleClass="field-label" /><TextField fx:id="telephone" promptText="Depuis la BDD" maxWidth="Infinity" styleClass="home-text-field" editable="false"/></VBox></HBox></VBox><VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Habilitations déclarées dans Symfony" styleClass="section-label" /><TableView fx:id="tableHabilitations" prefHeight="170" maxWidth="Infinity"><columns><TableColumn text="Famille d’implants" prefWidth="350"/><TableColumn text="Date de mise à jour" prefWidth="220"/></columns><placeholder><Label text="Aucune donnée à afficher pour le moment."/></placeholder></TableView></VBox><VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Indisponibilités déclarées dans Symfony" styleClass="section-label" /><TableView fx:id="tableIndisponibilites" prefHeight="170" maxWidth="Infinity"><columns><TableColumn text="Début" prefWidth="240"/><TableColumn text="Fin" prefWidth="240"/><TableColumn text="Motif" prefWidth="300"/></columns><placeholder><Label text="Aucune donnée à afficher pour le moment."/></placeholder></TableView><Button text="Retour aux médecins" styleClass="secondary" onAction="#ouvrirMedecins"/></VBox>
+        </VBox>
+      </content>
+    </ScrollPane>
+  </center>
+</BorderPane>

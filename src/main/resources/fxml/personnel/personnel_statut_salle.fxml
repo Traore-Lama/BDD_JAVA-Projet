@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Maquette sans données fictives. Style CSS appliqué par SceneManager. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.personnel.StatutSalleController"
+            prefWidth="1300" prefHeight="800">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+      <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Espace personnel administratif" styleClass="user-label"/>
+      <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+    </HBox>
+  </top>
+  <left>
+    <VBox prefWidth="230" styleClass="sidebar" spacing="7">
+<Button text="Tableau de bord" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDashboard"/>
+<Button text="Patients" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPatients"/>
+<Button text="Médecins" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirMedecins"/>
+<Button text="Salles" styleClass="nav-button, nav-active" maxWidth="Infinity" onAction="#ouvrirSalles"/>
+<Button text="Demandes" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDemandes"/>
+<Button text="Planning" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPlanning"/>
+    </VBox>
+  </left>
+  <center>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+      <content>
+        <VBox spacing="18" styleClass="content" fillWidth="true">
+          <Label text="MODIFIER LE STATUT D’UNE SALLE" styleClass="title" />
+          <Label text="Changer uniquement la disponibilité de la salle sélectionnée." styleClass="stat-label" wrapText="true"/>
+
+          <VBox spacing="14" styleClass="card" maxWidth="720">
+            <Label text="Salle sélectionnée" styleClass="section-label"/>
+            <Label text="Nom et type" styleClass="field-label"/>
+            <TextField fx:id="salleSelectionnee" editable="false" promptText="Renseignés depuis la BDD" styleClass="search"/>
+            <Label text="Nouveau statut *" styleClass="field-label"/>
+            <ComboBox fx:id="statutSalle" promptText="Disponible / Indisponible / En remise en état" maxWidth="Infinity"/>
+            <Label text="Le personnel administratif ne peut pas créer une salle ni modifier son type." wrapText="true" styleClass="stat-label"/>
+            <HBox spacing="12" alignment="CENTER_RIGHT">
+              <Button text="Annuler" styleClass="secondary" onAction="#ouvrirSalles"/>
+              <Button text="Enregistrer le statut" styleClass="btn-primary" disable="true"/>
+            </HBox>
+          </VBox>
+        </VBox>
+      </content>
+    </ScrollPane>
+  </center>
+</BorderPane>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Maquette sans données fictives. Style CSS appliqué par SceneManager. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.personnel.PlanningController"
+            prefWidth="1300" prefHeight="800">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+      <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Espace personnel administratif" styleClass="user-label"/>
+      <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+    </HBox>
+  </top>
+  <left>
+    <VBox prefWidth="230" styleClass="sidebar" spacing="7">
+<Button text="Tableau de bord" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDashboard"/>
+<Button text="Patients" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPatients"/>
+<Button text="Médecins" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirMedecins"/>
+<Button text="Salles" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirSalles"/>
+<Button text="Demandes" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDemandes"/>
+<Button text="Planning" styleClass="nav-button, nav-active" maxWidth="Infinity" onAction="#ouvrirPlanning"/>
+    </VBox>
+  </left>
+  <center>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+      <content>
+        <VBox spacing="18" styleClass="content" fillWidth="true">
+          <Label text="PLANNING" styleClass="title" />
+          <Label text="Consulter les interventions programmées, filtrer par période, médecin et salle." styleClass="stat-label" wrapText="true"/>
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Filtres du planning" styleClass="section-label" /><HBox spacing="12" alignment="CENTER_LEFT"><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Date" styleClass="field-label" /><DatePicker fx:id="dateFiltre" maxWidth="Infinity"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Médecin" styleClass="field-label" /><ComboBox fx:id="medecinFiltre" promptText="Tous les médecins" maxWidth="Infinity"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Salle" styleClass="field-label" /><ComboBox fx:id="salleFiltre" promptText="Toutes les salles" maxWidth="Infinity"/></VBox></HBox><Button text="Appliquer les filtres" styleClass="secondary" disable="true"/></VBox><VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Interventions programmées" styleClass="section-label" /><TableView fx:id="tablePlanning" prefHeight="420" maxWidth="Infinity"><columns><TableColumn text="Date" prefWidth="160"/><TableColumn text="Heure" prefWidth="120"/><TableColumn text="Patient" prefWidth="170"/><TableColumn text="Médecin" prefWidth="170"/><TableColumn text="Implant" prefWidth="185"/><TableColumn text="Salle" prefWidth="145"/></columns><placeholder><Label text="Aucune donnée à afficher pour le moment."/></placeholder></TableView></VBox>
+        </VBox>
+      </content>
+    </ScrollPane>
+  </center>
+</BorderPane>

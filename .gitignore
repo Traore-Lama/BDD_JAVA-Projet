@@ -1,0 +1,19 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Maven
+target/
+
+# Fichiers temporaires
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Configuration locale et secrets
+.env
+.env.local
+*.key
+*.pem

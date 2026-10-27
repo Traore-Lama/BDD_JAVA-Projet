@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.admin.ModificationSalleController" prefWidth="1300" prefHeight="800">
+  <top><HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+    <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+    <Region HBox.hgrow="ALWAYS"/>
+    <Label text="Espace administrateur" styleClass="user-label"/>
+    <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+  </HBox></top>
+  <left><VBox prefWidth="230" styleClass="sidebar" spacing="7"><Button text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirDashboard"/>
+<Button text="Personnel administratif" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirPersonnel"/>
+<Button text="Gestion des salles" maxWidth="Infinity" styleClass="nav-button, nav-active" onAction="#ouvrirSalles"/></VBox></left>
+  <center><ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+    <content><VBox spacing="18" fillWidth="true" styleClass="content">
+      <Label text="MODIFIER UNE SALLE" styleClass="title"/>
+      <Label text="Mettre à jour le nom ou le type de la salle sélectionnée." wrapText="true" styleClass="stat-label"/>
+      
+<VBox spacing="14" maxWidth="720" styleClass="card">
+ <Label text="Informations de la salle" styleClass="section-label"/>
+ <Label text="Nom de la salle *" styleClass="field-label"/>
+ <TextField fx:id="nomSalle" promptText="Nom existant" styleClass="search"/>
+ <Label text="Type de salle *" styleClass="field-label"/>
+ <ComboBox fx:id="typeSalle" promptText="Choisir un type de salle" maxWidth="Infinity"/>
+ <Label text="Les types de salles sont distincts des familles d’implants." styleClass="stat-label" wrapText="true"/>
+ <HBox spacing="12" alignment="CENTER_RIGHT">
+  <Button text="Annuler" styleClass="secondary" onAction="#ouvrirSalles"/>
+  <Button text="Enregistrer" styleClass="btn-primary" disable="true"/>
+ </HBox>
+</VBox>
+    </VBox></content>
+  </ScrollPane></center>
+</BorderPane>

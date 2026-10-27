@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.admin.CreationPersonnelController"
+            prefWidth="1300" prefHeight="800">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+            <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Espace administrateur" styleClass="user-label"/>
+            <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefWidth="230" styleClass="sidebar">
+            <Button text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirDashboard"/>
+            <Button text="Personnel administratif" maxWidth="Infinity" styleClass="nav-button, nav-active" onAction="#ouvrirPersonnel"/>
+            <Button text="Gestion des salles" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirSalles"/>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <content>
+                <VBox spacing="18" styleClass="content">
+                    <Label text="CRÉER UN COMPTE ADMINISTRATIF" styleClass="title"/>
+                    <Label text="Renseigner les informations du nouveau membre du personnel" styleClass="subtitle"/>
+                    <VBox spacing="18" maxWidth="720" styleClass="card">
+                        <Label text="Informations du compte" styleClass="section-label"/>
+                        <GridPane hgap="18" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50"/>
+                                <ColumnConstraints percentWidth="50"/>
+                            </columnConstraints>
+                            <VBox spacing="7" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label text="Nom *" styleClass="field-label"/>
+                                <TextField fx:id="nomField" promptText="Nom de famille" styleClass="search" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="7" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label text="Prénom *" styleClass="field-label"/>
+                                <TextField fx:id="prenomField" promptText="Prénom" styleClass="search" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="7" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                <Label text="Adresse e-mail professionnelle *" styleClass="field-label"/>
+                                <TextField fx:id="emailField" promptText="exemple@clinique.fr" styleClass="search" maxWidth="Infinity"/>
+                            </VBox>
+                        </GridPane>
+                        <Label text="Le compte sera actif à sa création. Les identifiants de connexion seront générés par l'application et ne seront pas saisis dans ce formulaire." wrapText="true" styleClass="stat-label"/>
+                        <HBox spacing="12" alignment="CENTER_RIGHT">
+                            <Button text="Annuler" styleClass="secondary" onAction="#ouvrirPersonnel"/>
+                            <Button text="Créer le compte" styleClass="btn-primary"/>
+                        </HBox>
+                    </VBox>
+                    <Label text="* Champs obligatoires" styleClass="stat-label"/>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

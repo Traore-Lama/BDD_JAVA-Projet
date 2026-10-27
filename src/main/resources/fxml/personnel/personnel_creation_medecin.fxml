@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Maquette sans données fictives. Style CSS appliqué par SceneManager. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.personnel.CreationMedecinController"
+            prefWidth="1300" prefHeight="800">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+      <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Espace personnel administratif" styleClass="user-label"/>
+      <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+    </HBox>
+  </top>
+  <left>
+    <VBox prefWidth="230" styleClass="sidebar" spacing="7">
+<Button text="Tableau de bord" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDashboard"/>
+<Button text="Patients" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPatients"/>
+<Button text="Médecins" styleClass="nav-button, nav-active" maxWidth="Infinity" onAction="#ouvrirMedecins"/>
+<Button text="Salles" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirSalles"/>
+<Button text="Demandes" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDemandes"/>
+<Button text="Planning" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPlanning"/>
+    </VBox>
+  </left>
+  <center>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+      <content>
+        <VBox spacing="18" styleClass="content" fillWidth="true">
+          <Label text="CRÉER UN MÉDECIN" styleClass="title" />
+          <Label text="Les habilitations sont renseignées par le médecin dans son espace web, pas sur ce formulaire." styleClass="stat-label" wrapText="true"/>
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity"><Label text="Informations du médecin" styleClass="section-label" /><HBox spacing="12" alignment="CENTER_LEFT"><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Civilité" styleClass="field-label" /><ComboBox fx:id="civilite" promptText="Choisir" maxWidth="Infinity"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Nom" styleClass="field-label" /><TextField fx:id="nom" promptText="Nom" maxWidth="Infinity" styleClass="home-text-field"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Prénom" styleClass="field-label" /><TextField fx:id="prenom" promptText="Prénom" maxWidth="Infinity" styleClass="home-text-field"/></VBox></HBox><HBox spacing="12" alignment="CENTER_LEFT"><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="E-mail" styleClass="field-label" /><TextField fx:id="email" promptText="Adresse e-mail" maxWidth="Infinity" styleClass="home-text-field"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Téléphone" styleClass="field-label" /><TextField fx:id="telephone" promptText="Téléphone" maxWidth="Infinity" styleClass="home-text-field"/></VBox></HBox><HBox spacing="12" alignment="CENTER_LEFT"><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Adresse" styleClass="field-label" /><TextField fx:id="adresse" promptText="Adresse complète" maxWidth="Infinity" styleClass="home-text-field"/></VBox><VBox HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="6"><Label text="Ville" styleClass="field-label" /><TextField fx:id="ville" promptText="Ville" maxWidth="Infinity" styleClass="home-text-field"/></VBox></HBox><HBox spacing="10"><Button text="Enregistrer" styleClass="btn-primary" disable="true"/><Button text="Annuler" styleClass="secondary" onAction="#ouvrirMedecins"/></HBox></VBox><Label text="Le code temporaire de première connexion sera généré automatiquement." styleClass="stat-label" />
+        </VBox>
+      </content>
+    </ScrollPane>
+  </center>
+</BorderPane>

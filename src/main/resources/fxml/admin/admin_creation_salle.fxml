@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.admin.CreationSalleController"
+            prefWidth="1300" prefHeight="800">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+            <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Espace administrateur" styleClass="user-label"/>
+            <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefWidth="230" styleClass="sidebar">
+            <Button text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirDashboard"/>
+            <Button text="Personnel administratif" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirPersonnel"/>
+            <Button text="Gestion des salles" maxWidth="Infinity" styleClass="nav-button, nav-active" onAction="#ouvrirSalles"/>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <content>
+                <VBox spacing="18" styleClass="content">
+                    <Label text="CRÉER UNE SALLE" styleClass="title"/>
+                    <Label text="Ajouter une salle d’opération au catalogue de la clinique" styleClass="subtitle" wrapText="true"/>
+                    <VBox spacing="18" maxWidth="720" styleClass="card">
+                        <Label text="Informations de la salle" styleClass="section-label"/>
+                        <VBox spacing="7">
+                            <Label text="Nom de la salle *" styleClass="field-label"/>
+                            <TextField fx:id="nomSalleField" promptText="Ex. : Salle A" styleClass="search" maxWidth="Infinity"/>
+                        </VBox>
+                        <VBox spacing="7">
+                            <Label text="Type de salle *" styleClass="field-label"/>
+                            <ComboBox fx:id="typeSalleCombo" promptText="Choisir un type existant" maxWidth="Infinity"/>
+                        </VBox>
+                        <Label text="Le statut sera défini automatiquement sur « Disponible » lors de la création." wrapText="true" styleClass="stat-label"/>
+                        <HBox alignment="CENTER_RIGHT" spacing="12">
+                            <Button text="Annuler" styleClass="secondary" onAction="#ouvrirSalles"/>
+                            <Button text="Créer la salle" styleClass="btn-primary"/>
+                        </HBox>
+                    </VBox>
+                    <Label text="* Champs obligatoires. Les types de salles proviendront de la liste définie pour les salles ; ils ne correspondent pas aux familles d’implants." wrapText="true" styleClass="stat-label"/>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

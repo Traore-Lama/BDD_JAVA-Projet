@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Maquette sans données fictives. Style CSS appliqué par SceneManager. -->
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.personnel.DetailDemandeController"
+            prefWidth="1300" prefHeight="800">
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+      <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="Espace personnel administratif" styleClass="user-label"/>
+      <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+    </HBox>
+  </top>
+  <left>
+    <VBox prefWidth="230" styleClass="sidebar" spacing="7">
+<Button text="Tableau de bord" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirDashboard"/>
+<Button text="Patients" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPatients"/>
+<Button text="Médecins" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirMedecins"/>
+<Button text="Salles" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirSalles"/>
+<Button text="Demandes" styleClass="nav-button, nav-active" maxWidth="Infinity" onAction="#ouvrirDemandes"/>
+<Button text="Planning" styleClass="nav-button" maxWidth="Infinity" onAction="#ouvrirPlanning"/>
+    </VBox>
+  </left>
+  <center>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+      <content>
+        <VBox spacing="18" styleClass="content" fillWidth="true">
+          <Label text="DÉTAIL D’UNE DEMANDE" styleClass="title" />
+          <Label text="Le système doit vérifier disponibilités des médecins et salles et habilitations avant toute validation." styleClass="stat-label" wrapText="true"/>
+
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity">
+            <Label text="Informations de la demande" styleClass="section-label"/>
+            <GridPane hgap="16" vgap="12">
+              <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+              </columnConstraints>
+              <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Patient" styleClass="field-label"/>
+                <TextField fx:id="patient" promptText="Patient concerné" editable="false" styleClass="search"/>
+              </VBox>
+              <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Implant demandé" styleClass="field-label"/>
+                <TextField fx:id="implant" promptText="Implant du catalogue" editable="false" styleClass="search"/>
+              </VBox>
+              <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label text="Statut de la demande" styleClass="field-label"/>
+                <TextField fx:id="statut" promptText="Statut actuel" editable="false" styleClass="search"/>
+              </VBox>
+              <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="Date de la demande" styleClass="field-label"/>
+                <TextField fx:id="dateDemande" promptText="Date d’enregistrement" editable="false" styleClass="search"/>
+              </VBox>
+            </GridPane>
+          </VBox>
+
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity">
+            <Label text="Créneaux proposés par le patient" styleClass="section-label"/>
+            <Label text="Les créneaux proviennent de la demande. Le personnel administratif ne propose pas de créneau à la place du patient." wrapText="true" styleClass="stat-label"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+              <Label text="Créneau réalisable" styleClass="status-valid"/>
+              <Label text="Créneau non réalisable" styleClass="status-invalid"/>
+              <Label text="Couleurs calculées après vérification des disponibilités" styleClass="stat-label"/>
+            </HBox>
+            <TableView fx:id="tableCreneaux" prefHeight="240" maxWidth="Infinity">
+              <columns>
+                <TableColumn text="Date" prefWidth="150"/>
+                <TableColumn text="Heure" prefWidth="110"/>
+                <TableColumn text="Médecin habilité / disponible" prefWidth="265"/>
+                <TableColumn text="Salle disponible" prefWidth="200"/>
+                <TableColumn text="Résultat" prefWidth="145"/>
+              </columns>
+              <placeholder><Label text="Aucun créneau proposé pour cette demande."/></placeholder>
+            </TableView>
+            <Label text="Règle : un créneau est valide seulement si un médecin habilité pour l’implant et une salle adaptés sont disponibles sur toute la période." wrapText="true" styleClass="stat-label"/>
+          </VBox>
+
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity">
+            <Label text="Médecins compatibles avec le créneau choisi" styleClass="section-label"/>
+            <Label text="Après sélection d’un créneau réalisable, afficher uniquement les médecins habilités et disponibles, ainsi que leur charge de travail." wrapText="true" styleClass="stat-label"/>
+            <TableView fx:id="tableMedecinsCompatibles" prefHeight="185" maxWidth="Infinity">
+              <columns>
+                <TableColumn text="Médecin" prefWidth="240"/>
+                <TableColumn text="Habilitation correspondante" prefWidth="275"/>
+                <TableColumn text="Interventions ce jour" prefWidth="200"/>
+                <TableColumn text="Disponibilité" prefWidth="160"/>
+              </columns>
+              <placeholder><Label text="Sélectionner un créneau réalisable pour afficher les médecins."/></placeholder>
+            </TableView>
+          </VBox>
+
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity">
+            <Label text="Salles disponibles pour le créneau choisi" styleClass="section-label"/>
+            <TableView fx:id="tableSallesDisponibles" prefHeight="170" maxWidth="Infinity">
+              <columns>
+                <TableColumn text="Salle" prefWidth="270"/>
+                <TableColumn text="Type" prefWidth="310"/>
+                <TableColumn text="État" prefWidth="190"/>
+              </columns>
+              <placeholder><Label text="Sélectionner un créneau réalisable pour afficher les salles."/></placeholder>
+            </TableView>
+          </VBox>
+
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity">
+            <Label text="Programmer l’intervention" styleClass="section-label"/>
+            <HBox spacing="14" alignment="CENTER_LEFT">
+              <VBox spacing="6" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="Créneau valide retenu" styleClass="field-label"/>
+                <ComboBox fx:id="creneauRetenu" promptText="Choisir parmi les créneaux valides" maxWidth="Infinity"/>
+              </VBox>
+              <VBox spacing="6" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="Médecin habilité et disponible" styleClass="field-label"/>
+                <ComboBox fx:id="medecin" promptText="Sélectionner un médecin" maxWidth="Infinity"/>
+              </VBox>
+              <VBox spacing="6" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="Salle disponible" styleClass="field-label"/>
+                <ComboBox fx:id="salle" promptText="Sélectionner une salle" maxWidth="Infinity"/>
+              </VBox>
+            </HBox>
+            <Label text="La validation créera l’intervention et marquera la demande comme acceptée." styleClass="stat-label" wrapText="true"/>
+            <Button text="Accepter et programmer l’intervention" styleClass="btn-primary" disable="true"/>
+          </VBox>
+
+          <VBox spacing="12" styleClass="card" maxWidth="Infinity">
+            <Label text="Refuser la demande" styleClass="section-label"/>
+            <Label text="Si aucun créneau ne convient, conserver la demande, retirer ses créneaux précédents et permettre au patient d’en proposer de nouveaux depuis Symfony." wrapText="true" styleClass="stat-label"/>
+            <Label text="Motif du refus (facultatif)" styleClass="field-label"/>
+            <TextArea fx:id="motifRefus" promptText="Indiquer une explication au patient, si nécessaire" prefRowCount="3" wrapText="true"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+              <Button text="Refuser la demande" styleClass="danger" disable="true"/>
+              <Button text="Retour aux demandes" styleClass="secondary" onAction="#ouvrirDemandes"/>
+            </HBox>
+          </VBox>
+        </VBox>
+      </content>
+    </ScrollPane>
+  </center>
+</BorderPane>

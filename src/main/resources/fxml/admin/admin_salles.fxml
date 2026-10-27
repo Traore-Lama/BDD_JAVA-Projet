@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sio.neurolink.controller.admin.SallesController"
+            prefWidth="1300" prefHeight="800">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+            <Label text="NEUROLINK CLINIC" styleClass="brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Espace administrateur" styleClass="user-label"/>
+            <Button text="Déconnexion" styleClass="secondary" onAction="#deconnexion"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefWidth="230" styleClass="sidebar">
+            <Button text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirDashboard"/>
+            <Button text="Personnel administratif" maxWidth="Infinity" styleClass="nav-button" onAction="#ouvrirPersonnel"/>
+            <Button text="Gestion des salles" maxWidth="Infinity" styleClass="nav-button, nav-active" onAction="#ouvrirSalles"/>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <content>
+                <VBox spacing="18" styleClass="content">
+                    <Label text="SALLES D’OPÉRATION" styleClass="title"/>
+                    <Label text="Gérer les salles et leur type" styleClass="subtitle" wrapText="true"/>
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <TextField fx:id="rechercheSalle" promptText="Rechercher une salle par nom" prefWidth="340" styleClass="search"/>
+                        <Button text="Rechercher" styleClass="secondary"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Créer une salle" styleClass="btn-primary" onAction="#ouvrirCreationSalle"/>
+                    </HBox>
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Liste des salles d'opération" styleClass="section-label"/>
+                        <TableView fx:id="tableSalles" prefHeight="420" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn text="Nom de la salle" prefWidth="230"/>
+                                <TableColumn text="Type de salle" prefWidth="260"/>
+                                <TableColumn text="Statut" prefWidth="200"/>
+                            </columns>
+                            <placeholder><Label text="Aucune salle à afficher pour le moment"/></placeholder>
+                        </TableView>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Button text="Modifier la salle" styleClass="secondary" onAction="#ouvrirModificationSalle"/>
+                        </HBox>
+                    </VBox>
+                    <Label text="Sélectionner une salle pour modifier son nom ou son type. Le personnel administratif pourra gérer les statuts selon ses droits." wrapText="true" styleClass="stat-label"/>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
